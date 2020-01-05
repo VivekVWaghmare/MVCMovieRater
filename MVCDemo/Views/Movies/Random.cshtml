@@ -1,0 +1,44 @@
+﻿@*@model MVCDemo.Models.Movie
+
+    @{
+        ViewData["Title"] = "Random";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1>@Model.Name</h1>*@
+
+@*<h2>@( ((Movie)ViewData["Movie"]).Name )</h2>*@
+
+@*
+Multiple line comment    
+
+*@
+
+@model MVCDemo.ViewModel.RandomMovieViewModel
+
+@{
+    ViewData["Title"] = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    var className = Model.Customers.Count > 1 ? "popular" : null;
+}
+
+<h2 class="@className">@Model.Movie.Name</h2>
+@if (Model.Customers.Count == 0)
+{
+    <text>No one has rented this movie before.</text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Id  @customer.Name</li>
+        }
+    </ul>
+}
+
+

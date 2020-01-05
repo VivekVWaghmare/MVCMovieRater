@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVCDemo.Models.Customer>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customers</h1>
+
+
+@if (Model.Count() == 0)
+{
+    <p>No costomers added here yet. Patience champion</p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Memebership Type
+                </th>
+                <th>
+                    Discout Rate
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cust in Model)
+            {
+            <tr>
+                <td>
+                    @cust.Id
+                </td>
+                @*<td scope="row">
+            @Html.ActionLink(cust.Name, "Details", "Customers", new { id = cust.Id }, null)
+        </td>*@
+                <td scope="row">
+                    @Html.ActionLink(cust.Name, "Edit", "Customers", new { id = cust.Id }, null)
+                </td>
+                <td>
+                    <span>@cust.MembershipType.Name</span>
+                </td>
+                <td>
+                    <span>@cust.MembershipType.DiscountRate%</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
